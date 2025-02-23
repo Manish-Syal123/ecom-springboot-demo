@@ -1,10 +1,7 @@
 package com.manish.ecom_proj_1.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,13 +19,18 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String desc;
+    private String description;
     private String brand;
     private BigDecimal price;
     private String category;
 
-    @JsonFormat(shape = JsonFormat.Shape.SCALAR, pattern = "dd-MM-yyyy")
+//    @JsonFormat(shape = JsonFormat.Shape.SCALAR, pattern = "dd-MM-yyyy") // on the frontend(client) side in ecom-frontend-3 we are handling date format.
     private Date releaseDate;
-    private boolean available;
-    private int quantity;
+    private boolean productAvailable;
+    private int stockQuantity;
+
+    private String imageName;
+    private String imageType;
+    @Lob //large object
+    private byte[] imageData;
 }
