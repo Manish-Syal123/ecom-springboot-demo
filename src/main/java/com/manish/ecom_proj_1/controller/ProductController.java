@@ -82,4 +82,11 @@ public class ProductController {
         }else
             return new ResponseEntity<>("Product Not Found",HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/products/search")  //@RequestParam is used to get parameters(key-value pair) from the url eg: /search?name=john?age=34
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword){
+        System.out.println("Searching with "+keyword);
+        List<Product> products=service.searchProducts(keyword);
+        return new ResponseEntity<>(products,HttpStatus.OK);
+    }
 }
